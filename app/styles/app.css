@@ -48,6 +48,33 @@ a {
   margin-left: 10px;
 }
 
+.rr-sidebar {
+  float: left;
+  width: calc(100% / 3); /* .w-third */
+}
+
+.rr-main-panel {
+  float: left;
+  width: calc(100% / 1.5); /* .w-two-thirds */
+}
+
+.rr-list {
+  list-style-type: none;
+}
+
+.rr-list-item {
+  margin-bottom: 10px;
+}
+
+.rr-band-link > .rr-pointer {
+  margin-left: 5px;
+  display: none;
+}
+
+.rr-band-link.active > .rr-pointer {
+  display: inline-block;
+}
+
 @media screen and (min-width: 60em) and (max-width: 100em) {
   .rr-container {
     width: 80%;
