@@ -15,6 +15,17 @@
       </li>
     {{/each}}
   </ul>
+  <div class="rr-new-label">
+    <button
+      type="button"
+      class="avenir bn bg-transparent near-white"
+      data-test-rr="new-band-label"
+      {{on "click" this.addBand}}
+    >
+      {{fa-icon "plus"}}
+      Add new band
+    </button>
+  </div>
 </div>
 <div class="rr-main-panel">
   {{outlet}}
