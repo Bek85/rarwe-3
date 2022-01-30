@@ -85,6 +85,52 @@ a {
   display: inline-block;
 }
 
+.rr-new-label {
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+
+.rr-input {
+  color: var(--input-color);
+  border-style: solid;
+  border-width: 1px;
+  padding: 0.25rem;
+}
+
+.rr-action-button {
+  color: var(--button-color);
+  background-color: var(--button-bg-color);
+  border-radius: 0.125rem;
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.rr-action-button:hover {
+  background-color: var(--button-hover-color);
+  cursor: pointer;
+}
+
+.rr-action-button[disabled] {
+  background-color: var(--button-disabled-color);
+}
+
+.rr-cancel-icon {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.rr-inline-form {
+  display: flex;
+}
+
+.rr-inline-form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (min-width: 60em) and (max-width: 100em) {
   .rr-container {
     width: 80%;
