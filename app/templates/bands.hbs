@@ -19,14 +19,15 @@
     {{#if this.isAddingBand}}
       <Input
         @type="text"
+        @value={{this.newBandName}}
         class="rr-input"
         placeholder="New Band"
-        @value={{this.newBandName}}
         {{on "click" this.addBand}}
       />
       <button
         type="button"
         class="rr-action-button"
+        disabled={{this.isAddButtonDisabled}}
         {{on "click" this.saveBand}}
       >
         Add
