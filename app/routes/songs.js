@@ -3,10 +3,10 @@ import EmberObject from "@ember/object";
 import { A } from "@ember/array";
 
 let Song = EmberObject.extend({
-  title: '',
-  band: '',
-  rating: 0
-})
+  title: "",
+  band: "",
+  rating: 0,
+});
 
 export default Route.extend({
   model() {
