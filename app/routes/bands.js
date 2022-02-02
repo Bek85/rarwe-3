@@ -1,8 +1,7 @@
 import Route from "@ember/routing/route";
-import EmberObject from "@ember/object";
 import { A } from "@ember/array";
 import Band from "rarwe/models/band";
-import Song from "rarwe/models/songs";
+import Song from "rarwe/models/song";
 
 export default Route.extend({
   model() {
