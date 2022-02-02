@@ -131,6 +131,15 @@ a {
   justify-content: space-between;
 }
 
+.rating-star {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  background-color: inherit;
+}
+
 @media screen and (min-width: 60em) and (max-width: 100em) {
   .rr-container {
     width: 80%;
