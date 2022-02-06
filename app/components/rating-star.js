@@ -12,7 +12,6 @@ export default Component.extend({
     for (let i = 1; i <= this.maxRating; i++) {
       stars.push({ rating: i, isFull: this.rating >= i });
     }
-    console.log(stars);
 
     return stars;
   }),
