@@ -1,13 +1,17 @@
-{{#if hasBlock}}
+{{!-- {{#if hasBlock}}
   {{yield stars}}
-{{else}}
-  {{#each this.stars as |star|}}
-    <button type="button" class="rating-star">
-      {{#if star.isFull}}
-        {{fa-icon "star"}}
-      {{else}}
-        {{fa-icon "star-o"}}
-      {{/if}}
-    </button>
-  {{/each}}
-{{/if}}
+{{else}} --}}
+{{#each this.stars as |star|}}
+  <button
+    type="button"
+    class="rating-star"
+    {{on "click" (fn this.setRating star.rating)}}
+  >
+    {{#if star.isFull}}
+      {{fa-icon "star"}}
+    {{else}}
+      {{fa-icon "star-o"}}
+    {{/if}}
+  </button>
+{{/each}}
+{{!-- {{/if}} --}}

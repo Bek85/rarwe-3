@@ -3,13 +3,19 @@
     <li class="rr-list-item">
       {{song.title}}
       <span class="rr-rating fr">
-        <RatingStar class="fr" @rating={{song.rating}} as |stars|>
-          {{#each this.stars as |star|}}
+        <RatingStar
+          class="fr"
+          @item={{song}}
+          @rating={{song.rating}}
+          @onClick={{this.updateRating}}
+          {{! as |stars| }}
+        >
+          {{!-- {{#each this.stars as |star|}}
             <span
               class="glyphicon
                 {{if star.isFull "glyphicon-star" "glyphicon-star-empty"}}"
             ></span>
-          {{/each}}
+          {{/each}} --}}
         </RatingStar>
       </span>
     </li>
