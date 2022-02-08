@@ -140,6 +140,36 @@ a {
   background-color: inherit;
 }
 
+.rr-page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid;
+}
+
+.rr-app-title > .rr-subtitle {
+  font-weight: normal;
+}
+
+.list > li {
+  margin-bottom: 10px;
+}
+
+.rr-header-link > .rr-app-title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.rr-panel {
+  padding: 1rem;
+  border: 0.125rem solid;
+  border-radius: 0.125rem;
+}
+
+.rr-textarea {
+  width: 100%;
+  padding: 0.5rem;
+}
+
 @media screen and (min-width: 60em) and (max-width: 100em) {
   .rr-container {
     width: 80%;
@@ -150,23 +180,4 @@ a {
   .rr-container {
     width: 50%;
   }
-}
-
-.rr-page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
-  border-bottom: 1px solid;
-}
-
-.rr-page-header > .rr-app-title {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.rr-app-title > .rr-subtitle {
-  font-weight: normal;
-}
-
-.list > li {
-  margin-bottom: 10px;
 }
