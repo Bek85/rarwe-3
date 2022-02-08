@@ -14,14 +14,11 @@ export default Component.extend({
     for (let i = 1; i <= this.maxRating; i++) {
       stars.push({ rating: i, isFull: this.rating >= i });
     }
-
     return stars;
+
   }),
 
   setRating: action(function (newRating) {
-    return this.onClick({
-      item: this.item,
-      rating: newRating
-    })
+    return this.onClick(newRating);
   }),
 });

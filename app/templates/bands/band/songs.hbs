@@ -5,9 +5,8 @@
       <span class="rr-rating fr">
         <RatingStar
           class="fr"
-          @item={{song}}
           @rating={{song.rating}}
-          @onClick={{this.updateRating}}
+          @onClick={{fn this.updateRating song}}
           {{! as |stars| }}
         >
           {{!-- {{#each this.stars as |star|}}
