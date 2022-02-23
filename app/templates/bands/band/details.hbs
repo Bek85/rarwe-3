@@ -1,12 +1,18 @@
 <section class="rr-panel b--solid br1 bw1">
-  <button {{on "click" this.toggleIsEditing}}>
-    {{if this.isEditing "Save" "Edit"}}
-  </button>
+  {{#if this.isEditing}}
+    <button {{action (mut this.isEditing) false}}>
+      Save
+    </button>
+  {{else}}
+    <button {{action (mut this.isEditing) true}} >
+      Edit
+    </button>
+  {{/if}}
   <h3>
     Description
   </h3>
   {{#if this.isEditing}}
-    <Textarea class="rr-textarea" @value={{this.model.description}} />
+    <Textarea class="rr-textarea" @value={{this.description}} />
   {{else}}
     <p class="lh-copy">
       {{this.model.description}}
