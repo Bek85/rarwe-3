@@ -1,10 +1,10 @@
 import Controller from "@ember/controller";
-import { action } from "@ember/object";
-import Band from "rarwe/models/band";
+// import { action } from "@ember/object";
+// import Band from "rarwe/models/band";
 
 export default Controller.extend({
   isEditing: false,
-  description: "",
+  // description: "",
 
   // saveDescription: action(function () {
 
