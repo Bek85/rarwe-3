@@ -2,8 +2,6 @@ import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { empty } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
-import { dasherize } from "@ember/string";
-import Band from "rarwe/models/band";
 
 export default Controller.extend({
   router: service(),
@@ -19,16 +17,18 @@ export default Controller.extend({
     this.set("isAddingBand", false);
   }),
 
-  saveBand: action(function (evt) {
+  saveBand: action(async function (evt) {
     evt.preventDefault();
     // Create a new band
-    let newBand = Band.create({ name: this.newBandName });
-    this.model.pushObject(newBand);
+    // let newBand = Band.create({ name: this.newBandName });
+    // this.model.pushObject(newBand);
+    let newBand = this.store.createRecord("band", { name: this.newBandName });
+    await newBand.save();
     this.setProperties({
       newBandName: "",
       isAddingBand: false,
     });
-    newBand.set("slug", dasherize(newBand.name));
-    this.router.transitionTo("bands.band.songs", newBand.slug);
+    // newBand.set("slug", dasherize(newBand.name));
+    this.router.transitionTo("bands.band.songs", newBand.id);
   }),
 });
