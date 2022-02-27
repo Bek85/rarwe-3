@@ -13,6 +13,12 @@
   --button-disabled-color: var(--light-blue);
 }
 
+#ember-testing-container {
+  font-family: "avenir next", avenir, sans-serif;
+  color: var(--near-white);
+  background-color: var(--mid-grey) !important;
+}
+
 a {
   color: inherit;
   text-decoration: none;
