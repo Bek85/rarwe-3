@@ -1,21 +1,16 @@
 import Controller from "@ember/controller";
-// import { action } from "@ember/object";
-// import Band from "rarwe/models/band";
+import { action } from "@ember/object";
 
 export default Controller.extend({
   isEditing: false,
-  // description: "",
 
-  // saveDescription: action(function () {
+  edit: action(async function () {
+    this.set("isEditing", true);
+  }),
 
-  //   this.set("isEditing", true);
-  //   let newDescription = Band.create({ description: this.description });
-  //   console.log(newDescription);
-
-  //   this.model.pushObject(newDescription);
-  //   this.setProperties({
-  //     isEditing: false,
-  //     // description: "",
-  //   });
-  // }),
+  save: action(async function () {
+    let band = this.model;
+    await band.save();
+    this.set("isEditing", false);
+  }),
 });
