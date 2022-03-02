@@ -25,5 +25,7 @@ export default function () {
 
   this.get("/bands");
   this.get("/bands/:id");
+  // this.get("bands/:id/songs");
   this.post("/bands");
+  // this.post("/bands/:id");
 }
