@@ -12,16 +12,20 @@ module("Acceptance | Bands", function (hooks) {
     this.server.create("band", { name: "Long Distance Calling" });
     await visit("/");
 
-    let bandLinks = document.querySelectorAll("[data-test-rr=band-link]");
-    assert.equal(bandLinks.length, 2, "All band links are rendered");
-    assert.ok(
-      bandLinks[0].textContent.includes("Radiohead"),
-      "First band link contains the band name"
-    );
-    assert.ok(
-      bandLinks[1].textContent.includes("Long Distance Calling"),
-      "The other band link contains the band name"
-    );
+    assert
+      .dom("[data-test-rr=band-link]")
+      .exists({ count: 2 }, "All band links are rendered");
+
+    assert
+      .dom("[data-test-rr=band-list-item]:first-child")
+      .hasText("Radiohead", "First band link contains the band name");
+
+    assert
+      .dom("[data-test-rr=band-list-item]:last-child")
+      .hasText(
+        "Long Distance Calling",
+        "The other band link contains the band name"
+      );
   });
 
   test("Create a band", async function (assert) {
@@ -34,22 +38,16 @@ module("Acceptance | Bands", function (hooks) {
     await click("[data-test-rr=new-band-button]");
     // await pauseTest();
 
-    let bandLinks = document.querySelectorAll("[data-test-rr=band-link]");
-    assert.equal(
-      bandLinks.length,
-      2,
-      "All band links are rendered",
-      "A new band link is rendered"
-    );
-    assert.ok(
-      bandLinks[1].textContent.includes("Caspian"),
-      "The new band link is rendered as the last item"
-    );
-    assert.ok(
-      document
-        .querySelector("[data-test-rr=songs-nav-item] > .active")
-        .textContent.includes("Songs"),
-      "The Songs tab is active"
-    );
+    assert
+      .dom("[data-test-rr=band-link]")
+      .exists({ count: 2 }, "A new band link is rendered");
+
+    assert
+      .dom("[data-test-rr=band-list-item]:last-child")
+      .hasText("Caspian", "The new band link is rendered as the last item");
+
+    assert
+      .dom("[data-test-rr=songs-nav-item] > .active")
+      .exists("The Songs tab is active");
   });
 });
