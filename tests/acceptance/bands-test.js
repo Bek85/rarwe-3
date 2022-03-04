@@ -9,6 +9,7 @@ module("Acceptance | Bands", function (hooks) {
   setupMirage(hooks);
 
   test("List bands", async function (assert) {
+    // this.server.logging = true;
     this.server.create("band", { name: "Radiohead" });
     this.server.create("band", { name: "Long Distance Calling" });
     await visit("/");
@@ -30,6 +31,7 @@ module("Acceptance | Bands", function (hooks) {
   });
 
   test("Create a band", async function (assert) {
+    this.server.logging = true;
     this.server.create("band", { name: "Royal Blood" });
 
     await visit("/");
@@ -51,7 +53,7 @@ module("Acceptance | Bands", function (hooks) {
   });
 
   // test("Create a song", async function (assert) {
-  //   this.server.create("song");
+  //   this.server.create("song", { title: "I want it that way", rating: 5 });
 
   // })
 });
