@@ -37,6 +37,17 @@
       {{fa-icon "angle-up"}}
     </button>
   </div>
+  <div class="rr-search-panel">
+    <Input
+      @type="text"
+      class="rr-input"
+      @value={{this.searchTerm}}
+      data-test-rr="search-box"
+    />
+    <div class="rr-search-icon">
+      {{fa-icon "search"}}
+    </div>
+  </div>
 </div>
 <ul class="rr-list">
   {{#each this.sortedSongs as |song|}}

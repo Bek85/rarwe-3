@@ -7,6 +7,14 @@ export default Controller.extend({
   newSongTitle: "",
   isAddButtonDisabled: empty("newSongTitle"),
   sortBy: "ratingDesc",
+  searchTerm: "",
+
+  matchingSongs: computed("model.songs.@each.title", "searchTerm", function () {
+    let searchTerm = this.searchTerm.toLowerCase();
+    return this.model
+      .get("songs")
+      .filter((song) => song.title.toLowerCase().includes(searchTerm));
+  }),
 
   sortProperties: computed("sortBy", function () {
     let options = {
@@ -18,7 +26,7 @@ export default Controller.extend({
     return options[this.sortBy];
   }),
 
-  sortedSongs: sort("model.songs", "sortProperties"),
+  sortedSongs: sort("matchingSongs", "sortProperties"),
 
   updateSortBy: action(function (sortBy) {
     this.set("sortBy", sortBy);
