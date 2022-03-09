@@ -1,3 +1,43 @@
+<div class="rr-controls-panel">
+  <div class="rr-sort-panel">
+    <button
+      type="button"
+      class="rr-sort-button"
+      data-test-rr="sort-by-rating-desc"
+      {{on "click" (fn this.updateSortBy "ratingDesc")}}
+    >
+      Rating
+      {{fa-icon "angle-down"}}
+    </button>
+    <button
+      type="button"
+      class="rr-sort-button"
+      data-test-rr="sort-by-rating-asc"
+      {{on "click" (fn this.updateSortBy "ratingAsc")}}
+    >
+      Rating
+      {{fa-icon "angle-up"}}
+    </button>
+    <button
+      type="button"
+      class="rr-sort-button"
+      data-test-rr="sort-by-title-desc"
+      {{on "click" (fn this.updateSortBy "titleDesc")}}
+    >
+      Title
+      {{fa-icon "angle-down"}}
+    </button>
+    <button
+      type="button"
+      class="rr-sort-button"
+      data-test-rr="sort-by-title-asc"
+      {{on "click" (fn this.updateSortBy "titleAsc")}}
+    >
+      Title
+      {{fa-icon "angle-up"}}
+    </button>
+  </div>
+</div>
 <ul class="rr-list">
   {{#each this.sortedSongs as |song|}}
     <li class="rr-list-item" data-test-rr="song-list-item">

@@ -181,7 +181,7 @@ a {
   padding-left: 1rem;
   padding-right: 0;
   margin-bottom: 2rem;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .rr-search-panel {

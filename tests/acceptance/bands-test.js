@@ -63,7 +63,7 @@ module("Acceptance | Bands", function (hooks) {
       band,
     });
     this.server.create("song", {
-      title: "Spinning in daffodils",
+      title: "Spinning in Daffodils",
       rating: 5,
       band,
     });
@@ -83,6 +83,22 @@ module("Acceptance | Bands", function (hooks) {
       .hasText(
         "New Fang",
         "The last song is the lowest ranked, last one in the alphabet"
+      );
+
+    await click("[data-test-rr=sort-by-title-desc]");
+
+    assert
+      .dom("[data-test-rr=song-list-item]:first-child")
+      .hasText(
+        "Spinning in Daffodils",
+        "The first song is the one that comes last in the alphabet"
+      );
+
+    assert
+      .dom("[data-test-rr=song-list-item]:last-child")
+      .hasText(
+        "Elephants",
+        "The last son is the one that comes first in the alphabet"
       );
   });
 

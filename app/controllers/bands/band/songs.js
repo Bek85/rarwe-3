@@ -20,6 +20,10 @@ export default Controller.extend({
 
   sortedSongs: sort("model.songs", "sortProperties"),
 
+  updateSortBy: action(function (sortBy) {
+    this.set("sortBy", sortBy);
+  }),
+
   addSong: action(function () {
     this.set("isAddingSong", true);
   }),
