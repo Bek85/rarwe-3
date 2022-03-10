@@ -1,5 +1,5 @@
 import { module, test } from "qunit";
-import { visit, click, fillIn } from "@ember/test-helpers";
+import { visit, click, fillIn, currentURL } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { createBand } from "rarwe/tests/helpers/custom-helpers";
@@ -87,6 +87,8 @@ module("Acceptance | Bands", function (hooks) {
 
     await click("[data-test-rr=sort-by-title-desc]");
 
+    assert.equal(currentURL(), "/bands/1/songs?s=titleDesc");
+
     assert
       .dom("[data-test-rr=song-list-item]:first-child")
       .hasText(
@@ -100,6 +102,14 @@ module("Acceptance | Bands", function (hooks) {
         "Elephants",
         "The last son is the one that comes first in the alphabet"
       );
+
+    await click("[data-test-rr=sort-by-title-asc]");
+
+    assert.equal(currentURL(), "/bands/1/songs?s=titleAsc");
+
+    await click("[data-test-rr=sort-by-rating-asc]");
+
+    assert.equal(currentURL(), "/bands/1/songs?s=ratingAsc");
   });
 
   test("Search songs", async function (assert) {
@@ -125,11 +135,15 @@ module("Acceptance | Bands", function (hooks) {
     await visit("/");
     await click("[data-test-rr=band-link]");
     await fillIn("[data-test-rr=search-box]", "no");
+
+    assert.equal(currentURL(), "/bands/1/songs?q=no");
+
     assert
       .dom("[data-test-rr=song-list-item]")
       .exists({ count: 2 }, "The songs matching the search term are displayed");
 
     await click("[data-test-rr=sort-by-title-desc]");
+
     assert
       .dom("[data-test-rr=song-list-item]:first-child")
       .hasText(
@@ -142,6 +156,9 @@ module("Acceptance | Bands", function (hooks) {
         "Mind Eraser, No Chaser",
         "A matching song that comes sooner in the alphabet appears at the bottom"
       );
+
+    assert.ok(currentURL().includes("q=no"));
+    assert.ok(currentURL().includes("s=titleDesc"));
   });
 
   // test("Create a song", async function (assert) {
