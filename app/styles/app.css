@@ -4,6 +4,7 @@
   --blue: #357edd;
   --dark-blue: #00449e;
   --light-blue: #96ccff;
+  --light-red: #ff725c;
   --mid-grey: #555;
   --near-white: #f4f4f4;
   --input-color: var(--mid-grey);
@@ -11,6 +12,35 @@
   --button-bg-color: var(--blue);
   --button-hover-color: var(--dark-blue);
   --button-disabled-color: var(--light-blue);
+  --error-color: var(--light-red);
+}
+
+.rr-loading-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto;
+}
+
+.rr-loading-message {
+  margin: 25px auto;
+  text-align: center;
+}
+
+.rr-error-pane {
+  margin: 25px auto;
+}
+
+.rr-error-message {
+  text-align: center;
+  color: var(--error-color);
+}
+
+.rr-spinner {
+  height: 50px;
+  width: 50px;
+  background: url("/images/spinner.svg") no-repeat;
 }
 
 #ember-testing-container {

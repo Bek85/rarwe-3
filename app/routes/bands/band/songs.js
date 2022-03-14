@@ -1,7 +1,9 @@
 import Route from "@ember/routing/route";
+import wait from "rarwe/utils/wait";
 
 export default Route.extend({
-  model() {
+  async model() {
+    await wait(3000);
     return this.modelFor("bands.band");
   },
 
