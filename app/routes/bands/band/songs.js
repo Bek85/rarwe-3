@@ -3,6 +3,7 @@ import Route from "@ember/routing/route";
 export default Route.extend({
   model() {
     return this.modelFor("bands.band");
+    // return reject(this.modelFor('bands.band'));
   },
 
   resetController(controller) {
