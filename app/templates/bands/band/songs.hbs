@@ -52,7 +52,7 @@
 <ul class="rr-list">
   {{#each this.sortedSongs as |song|}}
     <li class="rr-list-item" data-test-rr="song-list-item">
-      {{song.title}}
+      {{capitalize song.title}}
       <span class="rr-rating fr">
         <RatingStar
           class="fr"
@@ -72,7 +72,7 @@
   {{else}}
     <li class="tc">
       No
-      {{this.model.name}}
+      {{capitalize this.model.name}}
       songs yet, why don't you
       <a href="#" {{on "click" this.addSong}}>
         create one?
