@@ -87,14 +87,14 @@ module("Acceptance | Bands", function (hooks) {
 
     await click("[data-test-rr=sort-by-title-desc]");
 
-    assert.equal(currentURL(), "/bands/1/songs?s=titleDesc");
-
     assert
       .dom("[data-test-rr=song-list-item]:first-child")
       .hasText(
-        "Spinning in Daffodils",
+        "Spinning In Daffodils",
         "The first song is the one that comes last in the alphabet"
       );
+
+    assert.equal(currentURL(), "/bands/1/songs?s=titleDesc");
 
     assert
       .dom("[data-test-rr=song-list-item]:last-child")
@@ -105,9 +105,17 @@ module("Acceptance | Bands", function (hooks) {
 
     await click("[data-test-rr=sort-by-title-asc]");
 
+    assert
+      .dom("[data-test-rr=song-list-item]:last-child")
+      .hasAnyText("Spinning In Daffodils");
+
     assert.equal(currentURL(), "/bands/1/songs?s=titleAsc");
 
     await click("[data-test-rr=sort-by-rating-asc]");
+
+    assert
+      .dom("[data-test-rr=song-list-item]:last-child")
+      .hasAnyText("Spinning In Daffodils");
 
     assert.equal(currentURL(), "/bands/1/songs?s=ratingAsc");
   });
