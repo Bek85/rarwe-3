@@ -1,0 +1,49 @@
+<div class="rr-form-container">
+  <h3 data-test-rr="form-header">
+    Log in to R&R
+  </h3>
+  <form>
+    <div class="rr-form-row-inline">
+      <label for="email">
+        Email
+      </label>
+      <Input
+        @type="email"
+        @value={{this.email}}
+        class="rr-input ml-auto"
+        id="email"
+      />
+    </div>
+    <div class="rr-form-row-inline">
+      <label for="password">
+        Password
+      </label>
+      <Input
+        @type="password"
+        @value={{this.password}}
+        class="rr-input ml-auto"
+        id="password"
+      />
+    </div>
+    <div class="rr-form-footer">
+      <div class="rr-button-panel">
+        <button
+          type="submit"
+          class="rr-action-button"
+          data-test-rr="login-button"
+        >
+          Sign in
+        </button>
+      </div>
+      <div class="rr-cta">
+        <span class="mr1">
+          Don't have an account yet?
+        </span>
+        <LinkTo @route="sign-up" class="underline">
+          Sign up now
+        </LinkTo>
+      </div>
+    </div>
+  </form>
+</div>
+{{outlet}}

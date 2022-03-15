@@ -30,5 +30,6 @@ export default function () {
     return schema.songs.where({ bandId: id });
   }),
     this.post("/bands");
+  this.post("/users");
   // this.post("/bands/:id");
 }
