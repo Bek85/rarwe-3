@@ -8,18 +8,23 @@ export default Base.extend({
     let response = await fetch("/token", {
       method: "POST",
       headers: {
-        Accept: "application/vnd.api + json",
-        "Content-Type": "application/vnd.api + json",
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
       },
       body: JSON.stringify({
         username,
         password,
       }),
     });
+
     if (!response.ok) {
+      // try {
       let error = await response.json();
       throw error;
+      // } catch (error) {}
+      // return;
     }
+
     let { user_email: userEmail, token } = await response.json();
     return { userEmail, token };
   },

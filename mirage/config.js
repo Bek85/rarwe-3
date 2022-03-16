@@ -40,6 +40,7 @@ export default function () {
   this.post("/users");
   this.post("/token", function (schema, request) {
     let { username: email, password } = JSON.parse(request.requestBody);
+
     let users = schema.users.where({ email, password });
     if (users.length === 1) {
       return {
