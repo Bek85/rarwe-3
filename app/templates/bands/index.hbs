@@ -1,3 +1,7 @@
-<div class="tc">
-  Select a band.
+<div class="tc" data-test-rr="bands-empty-message">
+  {{#if this.model.length}}
+    Select a band.
+  {{else}}
+    Let's start by creating a band.
+  {{/if}}
 </div>
