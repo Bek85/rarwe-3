@@ -24,5 +24,8 @@ module("Acceptance | login", function (hooks) {
         "Let's start by creating a band.",
         "A descriptive empty message is shown"
       );
+    assert
+      .dom("[data-test-rr=user-email]")
+      .hasText("dave@tcv.com", "The logged in user's email is shown");
   });
 });

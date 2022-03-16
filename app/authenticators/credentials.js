@@ -18,11 +18,11 @@ export default Base.extend({
     });
 
     if (!response.ok) {
-      // try {
-      let error = await response.json();
-      throw error;
-      // } catch (error) {}
-      // return;
+      try {
+        let error = await response.json();
+        throw error;
+      } catch (error) {}
+      return;
     }
 
     let { user_email: userEmail, token } = await response.json();
