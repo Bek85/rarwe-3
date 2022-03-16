@@ -1,3 +1,5 @@
+import Response from "ember-cli-mirage/response";
+
 export default function () {
   // These comments are here to help you get started. Feel free to delete them.
 
@@ -23,7 +25,12 @@ export default function () {
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
 
-  this.get("/bands");
+  this.get("/bands", function (schema, request) {
+    if (!request.requestHeaders.authorization) {
+      return new Response(401);
+    }
+    return schema.bands.all();
+  });
   this.get("/bands/:id");
   this.get("/bands/:id/songs", function (schema, request) {
     let id = request.params.id;
