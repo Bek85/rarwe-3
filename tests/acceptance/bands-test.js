@@ -2,16 +2,18 @@ import { module, test } from "qunit";
 import { visit, click, fillIn, currentURL } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { createBand } from "rarwe/tests/helpers/custom-helpers";
+import { loginAs, createBand } from "rarwe/tests/helpers/custom-helpers";
 
 module("Acceptance | Bands", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
   test("List bands", async function (assert) {
-    // this.server.logging = true;
+    this.server.logging = true;
     this.server.create("band", { name: "Radiohead" });
     this.server.create("band", { name: "Long Distance Calling" });
+
+    await loginAs("dave@tcv.com");
     await visit("/");
 
     assert
