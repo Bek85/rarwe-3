@@ -13,6 +13,12 @@
         <span data-test-rr="user-email">
           {{this.session.data.authenticated.userEmail}}
         </span>
+        |
+        <span>
+          <LinkTo @route="logout" data-test-rr="logout">
+            Logout
+          </LinkTo>
+        </span>
       </div>
     {{/if}}
   </div>

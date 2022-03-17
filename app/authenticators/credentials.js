@@ -31,5 +31,7 @@ export default Base.extend({
     return { userEmail, token };
   },
 
-  invalidate(data) {},
+  async invalidate(data) {
+    return data;
+  },
 });
