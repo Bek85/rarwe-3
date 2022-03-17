@@ -169,6 +169,13 @@ module("Acceptance | Bands", function (hooks) {
     assert.ok(currentURL().includes("s=titleDesc"));
   });
 
+  test("Visit landing page without signing in", async function (assert) {
+    await visit("/");
+
+    assert.dom("[data-test-rr=form-header]").hasText("Log in to R&R");
+    assert.dom("[data-test-rr=user-email]").doesNotExist();
+  });
+
   // test("Create a song", async function (assert) {
   //   this.server.create("song", { title: "I want it that way", rating: 5 });
 
