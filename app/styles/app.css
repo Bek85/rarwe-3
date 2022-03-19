@@ -180,6 +180,9 @@ a {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .rr-app-title > .rr-subtitle {
@@ -237,6 +240,55 @@ a {
   padding-right: 0.5rem;
   margin-left: -5px;
   border-width: 0;
+}
+
+.rr-user-panel {
+  margin-left: auto;
+}
+
+.rr-signin-button {
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.rr-form-container {
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rr-form-row-inline {
+  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rr-button-panel {
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+}
+
+.rr-form-footer > .rr-cta {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 60em) and (max-width: 100em) {
+  .rr-form-container {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 100em) {
+  .rr-form-container {
+    width: 50%;
+  }
 }
 
 @media screen and (min-width: 60em) and (max-width: 100em) {

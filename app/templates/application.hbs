@@ -8,6 +8,19 @@
         </small>
       </h1>
     </LinkTo>
+    {{#if this.session.isAuthenticated}}
+      <div class="rr-user-panel">
+        <span data-test-rr="user-email">
+          {{this.session.data.authenticated.userEmail}}
+        </span>
+        |
+        <span>
+          <LinkTo @route="logout" data-test-rr="logout">
+            Logout
+          </LinkTo>
+        </span>
+      </div>
+    {{/if}}
   </div>
   <div class="rr-main-content">
     {{outlet}}
