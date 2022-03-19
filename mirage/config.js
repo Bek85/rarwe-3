@@ -26,7 +26,7 @@ export default function () {
   */
 
   this.get("/bands", function (schema, request) {
-    if (!request.requestHeaders.authorization) {
+    if (!request.requestHeaders["Authorization"]) {
       return new Response(401);
     }
     return schema.bands.all();

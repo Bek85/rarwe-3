@@ -36,6 +36,7 @@ module("Acceptance | Bands", function (hooks) {
     this.server.logging = true;
     this.server.create("band", { name: "Royal Blood" });
 
+    await loginAs("dave@tcv.com");
     await visit("/");
     await createBand("Caspian");
 
@@ -69,6 +70,8 @@ module("Acceptance | Bands", function (hooks) {
       rating: 5,
       band,
     });
+
+    await loginAs("dave@tcv.com");
 
     await visit("/");
     await click("[data-test-rr=band-link]");
@@ -141,6 +144,8 @@ module("Acceptance | Bands", function (hooks) {
       rating: 5,
       band,
     });
+
+    await loginAs("dave@tcv.com");
 
     await visit("/");
     await click("[data-test-rr=band-link]");
