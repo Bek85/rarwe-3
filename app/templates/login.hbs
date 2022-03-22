@@ -12,7 +12,13 @@
         @value={{this.email}}
         class="rr-input ml-auto"
         id="email"
+        {{on "blur" (fn this.setShowErrors "email")}}
       />
+      {{#if this.showErrors.email}}
+        <div class="rr-form-field-error" data-test-rr="email-error">
+          {{v-get this "email" "message"}}
+        </div>
+      {{/if}}
     </div>
     <div class="rr-form-row-inline">
       <label for="password">
@@ -23,7 +29,14 @@
         @value={{this.password}}
         class="rr-input ml-auto"
         id="password"
+        autocomplete="password"
+        {{on "blur" (fn this.setShowErrors "password")}}
       />
+      {{#if this.showErrors.password}}
+        <div class="rr-form-field-error" data-test-rr="password-error">
+          {{v-get this "password" "message"}}
+        </div>
+      {{/if}}
     </div>
     <div class="rr-form-footer">
       <div class="rr-button-panel">
@@ -31,8 +44,9 @@
           type="submit"
           class="rr-action-button"
           data-test-rr="login-button"
+          disabled={{v-get this "isInvalid"}}
         >
-          Sign in
+          Log In
         </button>
       </div>
       <div class="rr-cta">

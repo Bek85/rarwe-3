@@ -30,4 +30,8 @@ export default Route.extend({
   model() {
     return this.modelFor("bands.band");
   },
+
+  resetController(controller) {
+    controller.set("showErrors.description", false);
+  },
 });

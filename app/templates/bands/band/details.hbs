@@ -1,7 +1,18 @@
 <section class="rr-panel b--solid br1 bw1">
-  <button {{on "click" (if this.isEditing this.save this.edit)}}>
-    {{if this.isEditing "Save" "Edit"}}
-  </button>
+  <div class="rr-inline-form fr">
+    <div class="rr-inline-form-group">
+      <button
+        type="button"
+        class="rr-cancel-icon-left"
+        {{on "click" this.stopEditing}}
+      >
+        {{fa-icon "times"}}
+      </button>
+      <button {{on "click" (if this.isEditing this.save this.edit)}}>
+        {{if this.isEditing "Save" "Edit"}}
+      </button>
+    </div>
+  </div>
   <h3>
     Description
   </h3>
@@ -11,5 +22,10 @@
     <p class="lh-copy">
       {{this.model.description}}
     </p>
+  {{/if}}
+  {{#if this.showErrors.description}}
+    <div class="rr-form-field-error" data-test-rr="description-error">
+      {{v-get this.model "description" "message"}}
+    </div>
   {{/if}}
 </section>
