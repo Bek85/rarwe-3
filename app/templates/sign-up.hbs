@@ -4,11 +4,6 @@
   </h3>
   <form {{on "submit" this.signUp}}>
     <div class="rr-form-row-inline">
-      {{#if this.showErrors.email}}
-        <div class="rr-form-field-error" data-test-rr="email-error">
-          {{v-get model "email" "message"}}
-        </div>
-      {{/if}}
       <label for="email">
         Email
       </label>
@@ -19,13 +14,13 @@
         id="email"
         {{on "blur" (fn this.setShowErrors "email")}}
       />
-    </div>
-    <div class="rr-form-row-inline">
-      {{#if this.showErrors.password}}
-        <div class="rr-form-field-error" data-test-rr="password-error">
-          {{v-get model "password" "message"}}
+      {{#if this.showErrors.email}}
+        <div class="rr-form-field-error" data-test-rr="email-error">
+          {{v-get model "email" "message"}}
         </div>
       {{/if}}
+    </div>
+    <div class="rr-form-row-inline">
       <label for="password">
         Password
       </label>
@@ -37,6 +32,11 @@
         autocomplete="password"
         {{on "blur" (fn this.setShowErrors "password")}}
       />
+      {{#if this.showErrors.password}}
+        <div class="rr-form-field-error" data-test-rr="password-error">
+          {{v-get model "password" "message"}}
+        </div>
+      {{/if}}
     </div>
     <div class="rr-form-footer">
       <div class="rr-button-panel">
