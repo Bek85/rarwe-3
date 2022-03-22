@@ -1,30 +1,11 @@
 import Model, { attr } from "@ember-data/model";
-import { buildValidations, validator } from "ember-cp-validations";
+import { buildValidations } from "ember-cp-validations";
+import emailField from "rarwe/validations/email-field";
+import passwordField from "rarwe/validations/password-field";
 
 const Validations = buildValidations({
-  email: [
-    validator("presence", {
-      presence: true,
-      ignoreBlank: true,
-      message: "Email can't be empty",
-    }),
-    validator("format", {
-      type: "email",
-      message: "Email should be a valid email",
-    }),
-  ],
-
-  password: [
-    validator("presence", {
-      presence: true,
-      ignoreBlank: true,
-      message: "Password can't be empty",
-    }),
-    validator("length", {
-      min: 8,
-      message: "Password should be at least 8 characters",
-    }),
-  ],
+  email: emailField,
+  password: passwordField,
 });
 
 export default Model.extend(Validations, {
