@@ -13,12 +13,18 @@
         class="rr-input ml-auto"
         id="email"
         {{on "blur" (fn this.setShowErrors "email")}}
+        {{on "input" this.resetBaseErrors}}
       />
       {{#if this.showErrors.email}}
         <div class="rr-form-field-error" data-test-rr="email-error">
           {{v-get model "email" "message"}}
         </div>
       {{/if}}
+      {{#each this.baseErrors as |error|}}
+        <div class="rr-form-field-error" data-test-rr="error-message">
+          {{error}}
+        </div>
+      {{/each}}
     </div>
     <div class="rr-form-row-inline">
       <label for="password">
@@ -31,6 +37,7 @@
         id="password"
         autocomplete="password"
         {{on "blur" (fn this.setShowErrors "password")}}
+        {{on "input" this.resetBaseErrors}}
       />
       {{#if this.showErrors.password}}
         <div class="rr-form-field-error" data-test-rr="password-error">
