@@ -1,7 +1,25 @@
 import Model, { attr, hasMany } from "@ember-data/model";
 import { computed } from "@ember/object";
+import { buildValidations, validator } from "ember-cp-validations";
 
-export default Model.extend({
+const Validations = buildValidations({
+  name: [
+    validator("presence", {
+      presence: true,
+      ignoreBlank: true,
+      message: "Name can't be empty",
+    }),
+  ],
+  description: [
+    validator("length", {
+      min: 12,
+      message: "The description needs to be at least 12 characters",
+    }),
+    validator("year-of-formation"),
+  ],
+});
+
+export default Model.extend(Validations, {
   name: attr(),
   description: attr(),
   songs: hasMany(),
