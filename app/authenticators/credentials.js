@@ -1,5 +1,6 @@
 import Base from "ember-simple-auth/authenticators/base";
 import fetch from "fetch";
+import ENV from "rarwe/config/environment";
 
 export default Base.extend({
   async restore(data) {
@@ -7,7 +8,8 @@ export default Base.extend({
   },
 
   async authenticate(username, password) {
-    let response = await fetch("/token", {
+    let tokenURL = ENV.apiHost ? `${ENV.apiHost}/token` : "/token";
+    let response = await fetch(tokenURL, {
       method: "POST",
       headers: {
         Accept: "application/vnd.api+json",
