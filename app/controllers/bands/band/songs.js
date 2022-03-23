@@ -39,9 +39,9 @@ export default Controller.extend({
 
   sortedSongs: sort("matchingSongs", "sortProperties"),
 
-  // updateSortBy: action(function (sortBy) {
-  //   this.set("sortBy", sortBy);
-  // }),
+  updateSortBy: action(function (sortBy) {
+    this.set("sortBy", sortBy);
+  }),
 
   addSong: action(function () {
     this.set("isAddingSong", true);
