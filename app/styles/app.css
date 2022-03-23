@@ -220,6 +220,7 @@ a {
 
 .rr-search-panel {
   margin-left: auto;
+  display: flex;
 }
 
 .rr-sort-button {
