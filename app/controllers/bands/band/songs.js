@@ -16,15 +16,15 @@ export default Controller.extend({
   searchTerm: "",
 
   newSongPlaceholder: computed("model.name", function () {
-    let bandName = this.model.name;
+    let bandName = this.band.name;
     return `New ${capitalize(bandName)} song`;
   }),
 
-  matchingSongs: computed("model.songs.@each.title", "searchTerm", function () {
+  matchingSongs: computed("model.@each.title", "searchTerm", function () {
     let searchTerm = this.searchTerm.toLowerCase();
-    return this.model
-      .get("songs")
-      .filter((song) => song.title.toLowerCase().includes(searchTerm));
+    return this.model.filter((song) =>
+      song.title.toLowerCase().includes(searchTerm)
+    );
   }),
 
   sortProperties: computed("sortBy", function () {
@@ -58,7 +58,7 @@ export default Controller.extend({
     // this.model.songs.pushObject(newSong);
     let newSong = this.store.createRecord("song", {
       title: this.get("newSongTitle"),
-      band: this.model,
+      band: this.band,
     });
     await newSong.save();
     this.set("newSongTitle", "");
