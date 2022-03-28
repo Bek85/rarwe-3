@@ -1,30 +1,31 @@
 import Controller from "@ember/controller";
 import { action, computed } from "@ember/object";
-import { empty, sort } from "@ember/object/computed";
+import { empty, sort, gt } from "@ember/object/computed";
 import { capitalize } from "rarwe/helpers/capitalize";
 
 export default Controller.extend({
-  queryParams: {
-    sortBy: "s",
-    searchTerm: "q",
-  },
+  pageNumber: 1,
 
   isAddingSong: false,
   newSongTitle: "",
   isAddButtonDisabled: empty("newSongTitle"),
   sortBy: "ratingDesc",
   searchTerm: "",
+  hasPrevPage: gt("pageNumber", 1),
+  hasNextPage: computed("pageNumber", "model.meta.page-count", function () {
+    return this.pageNumber < this.model.meta["page-count"];
+  }),
 
-  newSongPlaceholder: computed("model.name", function () {
-    let bandName = this.model.name;
+  newSongPlaceholder: computed("band.name", function () {
+    let bandName = this.band.name;
     return `New ${capitalize(bandName)} song`;
   }),
 
-  matchingSongs: computed("model.songs.@each.title", "searchTerm", function () {
+  matchingSongs: computed("model.@each.title", "searchTerm", function () {
     let searchTerm = this.searchTerm.toLowerCase();
-    return this.model
-      .get("songs")
-      .filter((song) => song.title.toLowerCase().includes(searchTerm));
+    return this.model.filter((song) =>
+      song.title.toLowerCase().includes(searchTerm)
+    );
   }),
 
   sortProperties: computed("sortBy", function () {
@@ -58,9 +59,10 @@ export default Controller.extend({
     // this.model.songs.pushObject(newSong);
     let newSong = this.store.createRecord("song", {
       title: this.get("newSongTitle"),
-      band: this.model,
+      band: this.band,
     });
     await newSong.save();
+    this.model.update();
     this.set("newSongTitle", "");
   }),
 

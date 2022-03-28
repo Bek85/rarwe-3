@@ -13,6 +13,45 @@
   --button-hover-color: var(--dark-blue);
   --button-disabled-color: var(--light-blue);
   --error-color: var(--light-red);
+  --flash-message-color: var(--near-white);
+  --flash-message-background-color: var(--blue);
+}
+
+.rr-pagination-links {
+  padding-left: 1rem;
+  margin-top: 1em;
+  display: flex;
+}
+
+.rr-pagination-prev:hover {
+  border-bottom: 1px solid var(--navitem-link-color);
+}
+
+.rr-pagination-next {
+  margin-left: auto;
+}
+
+.rr-pagination-next:hover {
+  border-bottom: 1px solid var(--navitem-link-color);
+}
+
+.flash-message {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--flash-message-color);
+  background-color: var(--flash-message-background-color);
+}
+
+.rr-search-button {
+  border-radius: 0.125rem;
+  padding: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-left: -5px;
 }
 
 .rr-loading-pane {
@@ -233,7 +272,7 @@ a {
   cursor: pointer;
 }
 
-.rr-search-icon {
+/* .rr-search-icon {
   display: inline-block;
   color: var(--mid-grey);
   background-color: white;
@@ -242,7 +281,7 @@ a {
   padding-right: 0.5rem;
   margin-left: -5px;
   border-width: 0;
-}
+} */
 
 .rr-user-panel {
   margin-left: auto;
