@@ -15,7 +15,7 @@ export default Controller.extend({
   sortBy: "ratingDesc",
   searchTerm: "",
 
-  newSongPlaceholder: computed("model.name", function () {
+  newSongPlaceholder: computed("band.name", function () {
     let bandName = this.band.name;
     return `New ${capitalize(bandName)} song`;
   }),

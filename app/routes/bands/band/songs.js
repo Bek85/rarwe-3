@@ -4,7 +4,9 @@ export default Route.extend({
   model() {
     let band = this.modelFor("bands.band");
     return band.store.query("song", {
-      bandId: band.id,
+      filter: {
+        band_id: band.id,
+      },
     });
     // return reject(this.modelFor('bands.band'));
   },
