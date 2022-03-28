@@ -1,19 +1,20 @@
 import Controller from "@ember/controller";
 import { action, computed } from "@ember/object";
-import { empty, sort } from "@ember/object/computed";
+import { empty, sort, gt } from "@ember/object/computed";
 import { capitalize } from "rarwe/helpers/capitalize";
 
 export default Controller.extend({
-  queryParams: {
-    sortBy: "s",
-    searchTerm: "q",
-  },
+  pageNumber: 1,
 
   isAddingSong: false,
   newSongTitle: "",
   isAddButtonDisabled: empty("newSongTitle"),
   sortBy: "ratingDesc",
   searchTerm: "",
+  hasPrevPage: gt("pageNumber", 1),
+  hasNextPage: computed("pageNumber", "model.meta.page-count", function () {
+    return this.pageNumber < this.model.meta["page-count"];
+  }),
 
   newSongPlaceholder: computed("band.name", function () {
     let bandName = this.band.name;

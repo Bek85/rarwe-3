@@ -124,3 +124,25 @@
     </button>
   {{/if}}
 </div>
+<div class="rr-pagination-links">
+  {{#if this.hasPrevPage}}
+    <LinkTo
+      @query={{hash pageNumber=(dec this.pageNumber)}}
+      class="rr-pagination-prev"
+      data-test-rr="pagination-prev"
+    >
+      {{fa-icon "angle-left"}}
+      Prev
+    </LinkTo>
+  {{/if}}
+  {{#if this.hasNextPage}}
+    <LinkTo
+      @query={{hash pageNumber=(inc pageNumber)}}
+      class="rr-pagination-next"
+      data-test-rr="pagination-next"
+    >
+      Next
+      {{fa-icon "angle-right"}}
+    </LinkTo>
+  {{/if}}
+</div>
