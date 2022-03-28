@@ -61,6 +61,7 @@ export default Controller.extend({
       band: this.band,
     });
     await newSong.save();
+    this.model.update();
     this.set("newSongTitle", "");
   }),
 
