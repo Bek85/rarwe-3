@@ -28,7 +28,9 @@ export default Controller.extend({
       newBandName: "",
       isAddingBand: false,
     });
+
     // newBand.set("slug", dasherize(newBand.name));
     this.router.transitionTo("bands.band.songs", newBand.id);
+    this.flashMessages.success("The new band has been created");
   }),
 });

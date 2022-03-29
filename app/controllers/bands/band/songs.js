@@ -75,6 +75,7 @@ export default Controller.extend({
     await newSong.save();
     this.model.update();
     this.set("newSongTitle", "");
+    this.flashMessages.success("The new song has been created");
   }),
 
   updateRating: action(function (song, rating) {
