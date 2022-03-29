@@ -43,14 +43,19 @@
       class="rr-input"
       @value={{this.searchTerm}}
       data-test-rr="search-box"
+      {{on "blur" this.updateSearchTerm}}
     />
-    <button class="rr-search-button">
+    <button
+      type="button"
+      class="rr-search-button"
+      {{on "click" this.updateSearchTerm}}
+    >
       {{fa-icon "search"}}
     </button>
   </div>
 </div>
 <ul class="rr-list">
-  {{#each this.matchingSongs as |song|}}
+  {{#each this.model as |song|}}
     <li class="rr-list-item" data-test-rr="song-list-item">
       {{capitalize song.title}}
       <span class="rr-rating fr">
