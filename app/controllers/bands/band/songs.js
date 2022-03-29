@@ -1,6 +1,6 @@
 import Controller from "@ember/controller";
 import { action, computed } from "@ember/object";
-import { empty, sort, gt } from "@ember/object/computed";
+import { empty, gt } from "@ember/object/computed";
 import { capitalize } from "rarwe/helpers/capitalize";
 
 export default Controller.extend({
@@ -9,7 +9,7 @@ export default Controller.extend({
   isAddingSong: false,
   newSongTitle: "",
   isAddButtonDisabled: empty("newSongTitle"),
-  sortBy: "ratingDesc",
+  sortBy: "-rating,title",
   searchTerm: "",
   hasPrevPage: gt("pageNumber", 1),
   hasNextPage: computed("pageNumber", "model.meta.page-count", function () {
@@ -28,17 +28,17 @@ export default Controller.extend({
     );
   }),
 
-  sortProperties: computed("sortBy", function () {
-    let options = {
-      ratingDesc: ["rating:desc", "title:asc"],
-      ratingAsc: ["rating:asc", "title:asc"],
-      titleDesc: ["title:desc"],
-      titleAsc: ["title:asc"],
-    };
-    return options[this.sortBy];
-  }),
+  // sortProperties: computed("sortBy", function () {
+  //   let options = {
+  //     ratingDesc: ["rating:desc", "title:asc"],
+  //     ratingAsc: ["rating:asc", "title:asc"],
+  //     titleDesc: ["title:desc"],
+  //     titleAsc: ["title:asc"],
+  //   };
+  //   return options[this.sortBy];
+  // }),
 
-  sortedSongs: sort("matchingSongs", "sortProperties"),
+  // sortedSongs: sort("matchingSongs", "sortProperties"),
 
   // updateSortBy: action(function (sortBy) {
   //   this.set("sortBy", sortBy);
