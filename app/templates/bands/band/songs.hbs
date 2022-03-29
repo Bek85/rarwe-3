@@ -1,40 +1,40 @@
 <div class="rr-controls-panel">
   <div class="rr-sort-panel">
     <LinkTo
-      @query={{hash s="ratingDesc"}}
-      class="rr-sort-button"
-      data-test-rr="sort-by-rating-desc"
-      {{!-- {{on "click" (fn this.updateSortBy "ratingDesc")}} --}}
-    >
-      Rating
-      {{fa-icon "angle-down"}}
-    </LinkTo>
-    <LinkTo
-      @query={{hash s="ratingAsc"}}
-      class="rr-sort-button"
-      data-test-rr="sort-by-rating-asc"
-      {{!-- {{on "click" (fn this.updateSortBy "ratingAsc")}} --}}
-    >
-      Rating
-      {{fa-icon "angle-up"}}
-    </LinkTo>
-    <LinkTo
-      @query={{hash s="titleDesc"}}
-      class="rr-sort-button"
-      data-test-rr="sort-by-title-desc"
-      {{!-- {{on "click" (fn this.updateSortBy "titleDesc")}} --}}
-    >
-      Title
-      {{fa-icon "angle-down"}}
-    </LinkTo>
-    <LinkTo
-      @query={{hash s="titleAsc"}}
+      @query={{hash s="title"}}
       class="rr-sort-button"
       data-test-rr="sort-by-title-asc"
-      {{!-- {{on "click" (fn this.updateSortBy "titleAsc")}} --}}
+      {{!-- {{on "click" (fn this.updateSortBy "ratingDesc")}} --}}
     >
       Title
       {{fa-icon "angle-up"}}
+    </LinkTo>
+    <LinkTo
+      @query={{hash s="-title"}}
+      class="rr-sort-button"
+      data-test-rr="sort-by-title-desc"
+      {{!-- {{on "click" (fn this.updateSortBy "ratingAsc")}} --}}
+    >
+      Title
+      {{fa-icon "angle-down"}}
+    </LinkTo>
+    <LinkTo
+      @query={{hash s="rating"}}
+      class="rr-sort-button"
+      data-test-rr="sort-by-rating-asc"
+      {{!-- {{on "click" (fn this.updateSortBy "titleDesc")}} --}}
+    >
+      Rating
+      {{fa-icon "angle-up"}}
+    </LinkTo>
+    <LinkTo
+      @query={{hash s="-rating"}}
+      class="rr-sort-button"
+      data-test-rr="sort-by-rating-desc"
+      {{!-- {{on "click" (fn this.updateSortBy "titleAsc")}} --}}
+    >
+      Rating
+      {{fa-icon "angle-down"}}
     </LinkTo>
   </div>
   <div class="rr-search-panel">
@@ -43,14 +43,19 @@
       class="rr-input"
       @value={{this.searchTerm}}
       data-test-rr="search-box"
+      {{on "blur" this.updateSearchTerm}}
     />
-    <button class="rr-search-button">
+    <button
+      type="button"
+      class="rr-search-button"
+      {{on "click" this.updateSearchTerm}}
+    >
       {{fa-icon "search"}}
     </button>
   </div>
 </div>
 <ul class="rr-list">
-  {{#each this.sortedSongs as |song|}}
+  {{#each this.model as |song|}}
     <li class="rr-list-item" data-test-rr="song-list-item">
       {{capitalize song.title}}
       <span class="rr-rating fr">

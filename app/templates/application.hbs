@@ -1,4 +1,7 @@
 <div class="rr-container">
+  {{#each flashMessages.queue as |flash|}}
+    {{flash-message flash=flash}}
+  {{/each}}
   <div class="rr-page-header">
     <LinkTo @route="index" class="rr-header-link">
       <h1 class="rr-app-title">

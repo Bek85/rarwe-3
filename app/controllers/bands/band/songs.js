@@ -1,16 +1,18 @@
 import Controller from "@ember/controller";
+import { inject as service } from "@ember/service";
 import { action, computed } from "@ember/object";
-import { empty, sort, gt } from "@ember/object/computed";
+import { empty, gt } from "@ember/object/computed";
 import { capitalize } from "rarwe/helpers/capitalize";
 
 export default Controller.extend({
+  router: service(),
   pageNumber: 1,
 
   isAddingSong: false,
   newSongTitle: "",
   isAddButtonDisabled: empty("newSongTitle"),
-  sortBy: "ratingDesc",
-  searchTerm: "",
+  sortBy: "title",
+  searchTermQP: "",
   hasPrevPage: gt("pageNumber", 1),
   hasNextPage: computed("pageNumber", "model.meta.page-count", function () {
     return this.pageNumber < this.model.meta["page-count"];
@@ -21,28 +23,37 @@ export default Controller.extend({
     return `New ${capitalize(bandName)} song`;
   }),
 
-  matchingSongs: computed("model.@each.title", "searchTerm", function () {
-    let searchTerm = this.searchTerm.toLowerCase();
-    return this.model.filter((song) =>
-      song.title.toLowerCase().includes(searchTerm)
-    );
-  }),
+  // matchingSongs: computed("model.@each.title", "searchTerm", function () {
+  //   let searchTerm = this.searchTerm.toLowerCase();
+  //   return this.model.filter((song) =>
+  //     song.title.toLowerCase().includes(searchTerm)
+  //   );
+  // }),
 
-  sortProperties: computed("sortBy", function () {
-    let options = {
-      ratingDesc: ["rating:desc", "title:asc"],
-      ratingAsc: ["rating:asc", "title:asc"],
-      titleDesc: ["title:desc"],
-      titleAsc: ["title:asc"],
-    };
-    return options[this.sortBy];
-  }),
+  // sortProperties: computed("sortBy", function () {
+  //   let options = {
+  //     ratingDesc: ["rating:desc", "title:asc"],
+  //     ratingAsc: ["rating:asc", "title:asc"],
+  //     titleDesc: ["title:desc"],
+  //     titleAsc: ["title:asc"],
+  //   };
+  //   return options[this.sortBy];
+  // }),
 
-  sortedSongs: sort("matchingSongs", "sortProperties"),
+  // sortedSongs: sort("matchingSongs", "sortProperties"),
 
   // updateSortBy: action(function (sortBy) {
   //   this.set("sortBy", sortBy);
   // }),
+
+  updateSearchTerm: action(function () {
+    this.router.transitionTo({
+      queryParams: {
+        q: this.searchTerm,
+        page: 1,
+      },
+    });
+  }),
 
   addSong: action(function () {
     this.set("isAddingSong", true);
@@ -64,6 +75,7 @@ export default Controller.extend({
     await newSong.save();
     this.model.update();
     this.set("newSongTitle", "");
+    this.flashMessages.success("The new song has been created");
   }),
 
   updateRating: action(function (song, rating) {
