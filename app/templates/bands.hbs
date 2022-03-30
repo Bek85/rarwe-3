@@ -21,7 +21,7 @@
   </ul>
   <div class="rr-new-label">
     {{#if this.isAddingBand}}
-      <form class="rr-inline-form" {{on "submit" saveBand}}>
+      <form class="rr-inline-form" {{on "submit" (perform this.saveBand)}}>
         <Input
           @type="text"
           @value={{this.newBandName}}
@@ -34,7 +34,7 @@
           class="rr-action-button"
           disabled={{this.isAddButtonDisabled}}
           data-test-rr="new-band-button"
-          {{on "click" this.saveBand}}
+          {{on "click" (perform this.saveBand)}}
         >
           Add
         </button>
