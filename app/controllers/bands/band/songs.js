@@ -3,6 +3,7 @@ import { inject as service } from "@ember/service";
 import { action, computed } from "@ember/object";
 import { empty, gt } from "@ember/object/computed";
 import { capitalize } from "rarwe/helpers/capitalize";
+import { task } from "ember-concurrency";
 
 export default Controller.extend({
   router: service(),
@@ -63,7 +64,7 @@ export default Controller.extend({
     this.set("isAddingSong", false);
   }),
 
-  saveSong: action(async function (evt) {
+  saveSong: task(function* (evt) {
     evt.preventDefault();
     // Create a new song
     // let newSong = Song.create({ title: this.newSongTitle });
@@ -72,7 +73,7 @@ export default Controller.extend({
       title: this.get("newSongTitle"),
       band: this.band,
     });
-    await newSong.save();
+    yield newSong.save();
     this.model.update();
     this.set("newSongTitle", "");
     this.flashMessages.success("The new song has been created");
