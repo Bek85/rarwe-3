@@ -1,5 +1,6 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
+import { task } from "ember-concurrency";
 
 export default Controller.extend({
   isEditing: false,
@@ -16,11 +17,11 @@ export default Controller.extend({
     this.set("isEditing", false);
   }),
 
-  save: action(async function () {
+  save: task(function* () {
     let band = this.model;
     this.set("showErrors.description", true);
     if (band.validations.isValid) {
-      await band.save();
+      yield band.save();
       this.set("isEditing", false);
     }
   }),
