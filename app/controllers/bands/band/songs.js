@@ -1,7 +1,7 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import { action, computed } from "@ember/object";
-import { empty, gt } from "@ember/object/computed";
+import { empty, gt, or } from "@ember/object/computed";
 import { capitalize } from "rarwe/helpers/capitalize";
 import { task } from "ember-concurrency";
 
@@ -11,7 +11,8 @@ export default Controller.extend({
 
   isAddingSong: false,
   newSongTitle: "",
-  isAddButtonDisabled: empty("newSongTitle"),
+  hasEmptyName: empty("newSongTitle"),
+  isAddButtonDisabled: or("hasEmptyName", "saveSong.isRunning"),
   sortBy: "title",
   searchTermQP: "",
   hasPrevPage: gt("pageNumber", 1),
