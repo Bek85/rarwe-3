@@ -33,4 +33,9 @@ export default Controller.extend({
     this.router.transitionTo("bands.band.songs", newBand.id);
     this.flashMessages.success("The new band has been created");
   }),
+
+  deleteBand: action(async function (band) {
+    console.log(band);
+    band.destroyRecord();
+  }),
 });

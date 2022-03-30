@@ -121,6 +121,14 @@ a {
   padding: 5px;
 }
 
+.delete-band {
+  color: red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: auto !important;
+}
+
 .rr-navbar-item > a:hover {
   border-bottom: 2px solid var(--navitem-link-color);
 }
