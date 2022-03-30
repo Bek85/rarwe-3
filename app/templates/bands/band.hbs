@@ -12,7 +12,9 @@
     </li>
     <button class="delete-band" {{on "click" (fn this.deleteBand this.model)}}>
       {{fa-icon "trash"}}
-      Delete this band
+      Delete
+      {{this.model.name}}
+      band
     </button>
   </ul>
 </nav>
