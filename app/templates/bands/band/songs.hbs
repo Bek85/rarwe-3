@@ -38,17 +38,18 @@
     </LinkTo>
   </div>
   <div class="rr-search-panel">
-    <Input
-      @type="text"
+    {{! template-lint-disable self-closing-void-elements }}
+    <input
+      type="text"
       class="rr-input"
-      @value={{this.searchTerm}}
+      value={{this.searchTerm}}
       data-test-rr="search-box"
-      {{on "blur" this.updateSearchTerm}}
+      {{on "input" (perform this.updateSearchTerm)}}
     />
     <button
       type="button"
       class="rr-search-button"
-      {{on "click" this.updateSearchTerm}}
+      {{on "click" (perform this.updateSearchTerm null)}}
     >
       {{fa-icon "search"}}
     </button>
