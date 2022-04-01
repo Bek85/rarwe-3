@@ -1,13 +1,15 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
-import { empty } from "@ember/object/computed";
+import { empty, or } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
+import { task } from "ember-concurrency";
 
 export default Controller.extend({
   router: service(),
   isAddingBand: false,
   newBandName: "",
-  isAddButtonDisabled: empty("newBandName"),
+  hasEmptyName: empty("newBandName"),
+  isAddButtonDisabled: or("hasEmptyName", "saveBand.isRunning"),
 
   addBand: action(function () {
     this.set("isAddingBand", true);
@@ -17,13 +19,13 @@ export default Controller.extend({
     this.set("isAddingBand", false);
   }),
 
-  saveBand: action(async function (evt) {
+  saveBand: task(function* (evt) {
     evt.preventDefault();
     // Create a new band
     // let newBand = Band.create({ name: this.newBandName });
     // this.model.pushObject(newBand);
     let newBand = this.store.createRecord("band", { name: this.newBandName });
-    await newBand.save();
+    yield newBand.save();
     this.setProperties({
       newBandName: "",
       isAddingBand: false,
@@ -35,7 +37,6 @@ export default Controller.extend({
   }),
 
   deleteBand: action(async function (band) {
-    console.log(band);
     band.destroyRecord();
   }),
 });

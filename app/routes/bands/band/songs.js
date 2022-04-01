@@ -3,16 +3,16 @@ import Route from "@ember/routing/route";
 export default Route.extend({
   queryParams: {
     sortBy: { as: "s", refreshModel: true },
-    searchTermQP: { as: "q", refreshModel: true },
+    searchTerm: { as: "q", refreshModel: true },
     pageNumber: { as: "page", refreshModel: true },
   },
 
-  model({ pageNumber, sortBy, searchTermQP }) {
+  model({ pageNumber, sortBy, searchTerm }) {
     let band = this.modelFor("bands.band");
     return band.store.query("song", {
       filter: {
         band_id: band.id,
-        title: searchTermQP,
+        title: searchTerm,
       },
       "page[number]": pageNumber,
       sort: sortBy,
@@ -23,7 +23,7 @@ export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
     controller.set("band", this.modelFor("bands.band"));
-    controller.set("searchTerm", controller.searchTermQP);
+    // controller.set("searchTerm", controller.searchTermQP);
   },
 
   resetController(controller) {

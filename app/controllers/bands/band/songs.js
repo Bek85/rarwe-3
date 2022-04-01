@@ -1,8 +1,9 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import { action, computed } from "@ember/object";
-import { empty, gt } from "@ember/object/computed";
+import { empty, gt, or } from "@ember/object/computed";
 import { capitalize } from "rarwe/helpers/capitalize";
+import { task, timeout } from "ember-concurrency";
 
 export default Controller.extend({
   router: service(),
@@ -10,9 +11,10 @@ export default Controller.extend({
 
   isAddingSong: false,
   newSongTitle: "",
-  isAddButtonDisabled: empty("newSongTitle"),
+  hasEmptyName: empty("newSongTitle"),
+  isAddButtonDisabled: or("hasEmptyName", "saveSong.isRunning"),
   sortBy: "title",
-  searchTermQP: "",
+  // searchTermQP: "",
   hasPrevPage: gt("pageNumber", 1),
   hasNextPage: computed("pageNumber", "model.meta.page-count", function () {
     return this.pageNumber < this.model.meta["page-count"];
@@ -46,14 +48,18 @@ export default Controller.extend({
   //   this.set("sortBy", sortBy);
   // }),
 
-  updateSearchTerm: action(function () {
-    this.router.transitionTo({
+  updateSearchTerm: task(function* (evt) {
+    if (evt) {
+      yield timeout(250);
+      this.set("searchTerm", evt.target.value);
+    }
+    yield this.router.transitionTo({
       queryParams: {
         q: this.searchTerm,
         page: 1,
       },
     });
-  }),
+  }).restartable(),
 
   addSong: action(function () {
     this.set("isAddingSong", true);
@@ -63,7 +69,7 @@ export default Controller.extend({
     this.set("isAddingSong", false);
   }),
 
-  saveSong: action(async function (evt) {
+  saveSong: task(function* (evt) {
     evt.preventDefault();
     // Create a new song
     // let newSong = Song.create({ title: this.newSongTitle });
@@ -72,7 +78,7 @@ export default Controller.extend({
       title: this.get("newSongTitle"),
       band: this.band,
     });
-    await newSong.save();
+    yield newSong.save();
     this.model.update();
     this.set("newSongTitle", "");
     this.flashMessages.success("The new song has been created");

@@ -2,6 +2,7 @@ import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
 import extractServerError from "rarwe/utils/extract-server-error";
+import { task } from "ember-concurrency";
 
 export default Controller.extend({
   router: service(),
@@ -22,12 +23,12 @@ export default Controller.extend({
     this.set("showErrors", showErrors);
   }),
 
-  signUp: action(async function (evt) {
+  signUp: task(function* (evt) {
     evt.preventDefault();
 
     try {
-      await this.model.save();
-      await this.router.transitionTo("login");
+      yield this.model.save();
+      yield this.router.transitionTo("login");
     } catch (response) {
       let errorMessage = extractServerError(response.errors);
       this.baseErrors.pushObject(errorMessage);

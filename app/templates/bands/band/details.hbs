@@ -8,7 +8,7 @@
       >
         {{fa-icon "times"}}
       </button>
-      <button {{on "click" (if this.isEditing this.save this.edit)}}>
+      <button {{on "click" (if this.isEditing (perform this.save) this.edit)}}>
         {{if this.isEditing "Save" "Edit"}}
       </button>
     </div>

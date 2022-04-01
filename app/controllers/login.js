@@ -2,6 +2,7 @@ import Controller from "@ember/controller";
 import { buildValidations } from "ember-cp-validations";
 import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
+import { task } from "ember-concurrency";
 import emailField from "rarwe/validations/email-field";
 import passwordField from "rarwe/validations/password-field";
 
@@ -25,14 +26,14 @@ export default Controller.extend(Validations, {
     this.set("showErrors", showErrors);
   }),
 
-  signIn: action(async function (evt) {
+  signIn: task(function* (evt) {
     evt.preventDefault();
     let { email, password } = this;
-    await this.session.authenticate(
+    yield this.session.authenticate(
       "authenticator:credentials",
       email,
       password
     );
-    await this.router.transitionTo("bands");
+    yield this.router.transitionTo("bands");
   }),
 });

@@ -2,7 +2,7 @@
   <h3>
     Sign up to R&R
   </h3>
-  <form {{on "submit" this.signUp}}>
+  <form {{on "submit" (perform this.signUp)}}>
     <div class="rr-form-row-inline">
       <label for="email">
         Email

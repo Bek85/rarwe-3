@@ -2,7 +2,7 @@
   <h3 data-test-rr="form-header">
     Log in to R&R
   </h3>
-  <form {{on "submit" this.signIn}}>
+  <form {{on "submit" (perform this.signIn)}}>
     <div class="rr-form-row-inline">
       <label for="email">
         Email

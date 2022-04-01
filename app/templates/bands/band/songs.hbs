@@ -37,22 +37,7 @@
       {{fa-icon "angle-down"}}
     </LinkTo>
   </div>
-  <div class="rr-search-panel">
-    <Input
-      @type="text"
-      class="rr-input"
-      @value={{this.searchTerm}}
-      data-test-rr="search-box"
-      {{on "blur" this.updateSearchTerm}}
-    />
-    <button
-      type="button"
-      class="rr-search-button"
-      {{on "click" this.updateSearchTerm}}
-    >
-      {{fa-icon "search"}}
-    </button>
-  </div>
+  <SearchPanel @value={{this.searchTerm}} @onChange={{this.updateSearchTerm}} />
 </div>
 <ul class="rr-list">
   {{#each this.model as |song|}}
@@ -90,7 +75,7 @@
     <form
       class="rr-inline-form"
       data-test-rr="new-song-form"
-      {{on "submit" this.saveSong}}
+      {{on "submit" (perform this.saveSong)}}
     >
       <Input
         @type="text"
