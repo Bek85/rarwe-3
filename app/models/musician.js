@@ -16,7 +16,7 @@ export default Model.extend(Validations, {
   initials: computed("name", function () {
     return this.name
       .split(/\s+/)
-      .map((namePart) => namePart.chartAt(0))
+      .map((namePart) => namePart.charAt(0))
       .join("");
   }),
 });

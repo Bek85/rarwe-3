@@ -25,6 +25,24 @@
         </div>
       {{/if}}
     </div>
+    <div class="rr-form-row">
+      <div class="mb2">
+        <label for="bands">
+          Bands
+        </label>
+      </div>
+      <div class="mb2">
+        <PowerSelectMultiple
+          @options={{this.bands}}
+          @selected={{this.selectedBands}}
+          @searchField="name"
+          @placeholder="Choose some bands"
+          @onChange={{this.updateSelectedBands}} as |band|
+        >
+          {{band.name}}
+        </PowerSelectMultiple>
+      </div>
+    </div>
     <div class="rr-form-footer">
       <div class="rr-button-panel">
         <button
