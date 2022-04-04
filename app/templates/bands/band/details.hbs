@@ -28,4 +28,28 @@
       {{v-get this.model "description" "message"}}
     </div>
   {{/if}}
+  <h3>
+    Members
+  </h3>
+  {{#if this.model.members.length}}
+    <ul class="rr-list ma0 mt3 pl3">
+      {{#each this.model.members as |musician|}}
+        <li class="rr-list-item" data-test-rr="musician-name">
+          <LinkTo @route="musicians.show" @model={{@musician.id}}>
+            {{musician.name}}
+          </LinkTo>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <div class="mt3 ml3">
+      The band has no musicians yet
+    </div>
+  {{/if}}
+  <label class="dib ml1 mt3">
+    <LinkTo @route="musicians.new" @query={{hash band=this.model.id}}>
+      {{fa-icon "plus"}}
+      Add musician
+    </LinkTo>
+  </label>
 </section>
