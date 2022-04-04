@@ -8,7 +8,7 @@
     <div class="mb2">
       <Input
         @type="text"
-        @value={{musician.name}}
+        @value={{@musician.name}}
         id="name"
         class="rr-input ml-auto w-100"
         data-test-rr="musician-name"
@@ -17,7 +17,7 @@
     </div>
     {{#if this.showErrors.name}}
       <div class="rr-form-field-error" data-test-rr="name-error">
-        {{v-get musician "name" "message"}}
+        {{v-get @musician "name" "message"}}
       </div>
     {{/if}}
   </div>
@@ -47,7 +47,7 @@
         data-test-rr="create-button"
         disabled={{this.isButtonDisabled}}
       >
-        Create
+        {{if @musician.isNew "Create" "Update"}}
       </button>
     </div>
   </div>
