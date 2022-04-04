@@ -1,0 +1,41 @@
+<div class="bg-white mid-gray pa3">
+  <div class="flex">
+    <div class="w-25">
+      <div
+        class="h4 w4 bg-mid-gray near-white f1 tc dtc v-mid"
+        data-test-rr="musician-initials"
+      >
+        {{this.model.initials}}
+      </div>
+    </div>
+    <div class="w-50 flex flex-column ml4 items-start">
+      <h3 class="ma0" data-test-rr="musician-name">
+        {{this.model.name}}
+      </h3>
+      <div class="mt3" data-test-rr="musician-age">
+        <span class="b mr2">
+          Born:
+        </span>
+        1969 (age 49 years old)
+      </div>
+      <h4 class="ma0 mt3 mb3">
+        Bands
+      </h4>
+      {{#if this.model.bands.length}}
+        <ul class="rr-list ma0 pl3">
+          {{#each this.model.bands as |band|}}
+            <li class="rr-list-item" data-test-rr="band-name">
+              <LinkTo @route="bands.band" @model={{band.id}}>
+                {{band.name}}
+              </LinkTo>
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <div class="ml3">
+          No bands yet.
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
