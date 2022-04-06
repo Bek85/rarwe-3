@@ -4,7 +4,7 @@ module.exports = function (environment) {
   let ENV = {
     modulePrefix: "rarwe",
     environment,
-    rootURL: "/",
+    rootURL: "/rarwe-3",
     locationType: "auto",
     "ember-simple-auth": {
       routeIfAlreadyAuthenticated: "bands",
