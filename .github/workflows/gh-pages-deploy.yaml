@@ -28,7 +28,7 @@ jobs:
           fi
 
       - name: Build Application
-        run: npx ember build
+        run: npx ember build --environment=production
 
       - name: Run deploy script
         run: sh ./scripts/gh-pages-deploy.sh
