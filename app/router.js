@@ -53,11 +53,12 @@ Router.map(function () {
       this.route("details");
     });
   });
-  this.route('sign-up');
-  this.route('login');
-  this.route('logout');
+  this.route("sign-up");
+  this.route("login");
+  this.route("logout");
 
-  this.route('musicians', function() {
-    this.route('new');
+  this.route("musicians", function () {
+    this.route("new");
+    this.route("show", { path: ":id" });
   });
 });
