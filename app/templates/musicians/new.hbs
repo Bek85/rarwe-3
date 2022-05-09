@@ -4,11 +4,6 @@
   </h3>
   <form {{on "submit" (perform this.createMusician)}}>
     <div class="rr-form-row mb3">
-      {{#if this.showErrors.name}}
-        <div class="rr-form-field-error" data-test-rr="name-error">
-          {{v-get this.model "name" "message"}}
-        </div>
-      {{/if}}
       <div class="mb2">
         <label for="name">
           Name
@@ -23,6 +18,11 @@
           data-test-rr="musician-name"
           {{on "blur" (fn this.setShowErrors "name")}}
         />
+        {{#if this.showErrors.name}}
+          <div class="rr-form-field-error" data-test-rr="name-error">
+            {{v-get this.model "name" "message"}}
+          </div>
+        {{/if}}
       </div>
     </div>
     <div class="rr-form-footer">
