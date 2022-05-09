@@ -6,15 +6,18 @@ import { inject as service } from "@ember/service";
 
 export default Controller.extend({
   router: service(),
+  store: service(),
 
   isButtonDisabled: or(
     "model.validations.isInvalid",
     "createMusician.isRunning"
   ),
 
-  init() {
+  async init() {
     this._super(...arguments);
     this.set("showErrors", { name: false });
+    this.set("bands", await this.store.findAll("band"));
+    this.set("selectedBands", []);
   },
 
   setShowErrors: action(function (property) {
@@ -23,8 +26,13 @@ export default Controller.extend({
     this.set("showErrors", showErrors);
   }),
 
+  updateSelectedBands: action(function (bands) {
+    this.set("selectedBands", bands);
+  }),
+
   createMusician: task(function* (evt) {
     evt.preventDefault();
+    this.model.set("bands", this.selectedBands);
     yield this.model.save();
     yield this.router.transitionTo("musicians.show", this.model.id);
   }),
