@@ -1,0 +1,54 @@
+<form {{on "submit" (perform this.saveMusician)}}>
+  <div class="rr-form-row mb3">
+    <div class="mb2">
+      <label for="name">
+        Name
+      </label>
+    </div>
+    <div class="mb2">
+      <Input
+        @type="text"
+        @value={{musician.name}}
+        id="name"
+        class="rr-input ml-auto w-100"
+        data-test-rr="musician-name"
+        {{on "blur" (fn this.setShowErrors "name")}}
+      />
+      {{#if this.showErrors.name}}
+        <div class="rr-form-field-error" data-test-rr="name-error">
+          {{v-get this.model "name" "message"}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="rr-form-row">
+    <div class="mb2">
+      <label for="bands">
+        Bands
+      </label>
+    </div>
+    <div class="mb2">
+      <PowerSelectMultiple
+        @options={{this.bands}}
+        @selected={{this.selectedBands}}
+        @searchField="name"
+        @placeholder="Choose some bands"
+        @onChange={{this.updateSelectedBands}} as |band|
+      >
+        {{band.name}}
+      </PowerSelectMultiple>
+    </div>
+  </div>
+  <div class="rr-form-footer">
+    <div class="rr-button-panel">
+      <button
+        type="submit"
+        class="rr-action-button"
+        data-test-rr="create-button"
+        disabled={{this.isButtonDisabled}}
+      >
+        Create
+      </button>
+    </div>
+  </div>
+</form>
