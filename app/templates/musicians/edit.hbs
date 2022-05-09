@@ -3,5 +3,9 @@
     Update
     {{this.model.name}}
   </h3>
-  <MusicianForm @musician={{this.model}} @afterSave={{gotoMusicianDetails}} />
+  <MusicianForm
+    @musician={{this.model}}
+    @afterSave={{gotoMusicianDetails}}
+    @selectedBands={{this.selectedBands}}
+  />
 </div>

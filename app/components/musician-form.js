@@ -9,6 +9,7 @@ export default Component.extend({
 
   musician: null,
   afterSave: null,
+  selectedBands: null,
   store: service(),
 
   isButtonDisabled: or(
@@ -20,7 +21,6 @@ export default Component.extend({
     this._super(...arguments);
     this.set("showErrors", { name: false });
     this.set("bands", await this.store.findAll("band"));
-    this.set("selectedBands", []);
   },
 
   setShowErrors: action(function (property) {
