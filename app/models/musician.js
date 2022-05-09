@@ -1,4 +1,4 @@
-import Model, { attr } from "@ember-data/model";
+import Model, { attr, hasMany } from "@ember-data/model";
 import { buildValidations, validator } from "ember-cp-validations";
 import { computed } from "@ember/object";
 
@@ -18,4 +18,6 @@ export default Model.extend(Validations, {
       .map((namePart) => namePart.charAt(0))
       .join("");
   }),
+
+  bands: hasMany(),
 });

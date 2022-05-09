@@ -18,17 +18,19 @@
       <h4 class="ma0mt3 mb3">
         Bands
       </h4>
-      <ul class="rr-list ma0 pl3">
-        <li class="rr-list-item" data-test-rr="band-name">
-          Nirvana
-        </li>
-        <li class="rr-list-item">
-          Foo Fighters
-        </li>
-        <li class="rr-list-item">
-          Them Crooked Vultures
-        </li>
-      </ul>
+      {{#if this.model.bands.length}}
+        <ul class="rr-list ma0 pl3">
+          {{#each this.model.bands as |band|}}
+            <LinkTo @route="bands.band" @model={{band.id}}>
+              {{band.name}}
+            </LinkTo>
+          {{/each}}
+        </ul>
+      {{else}}
+        <div class="ml3">
+          No bands yet.
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>
