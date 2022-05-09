@@ -5,10 +5,20 @@
         {{this.model.initials}}
       </div>
     </div>
-    <div class="w-50 flex flex-column ml4 items-start">
-      <h3 class="ma0" data-test-rr="musician-name">
-        {{this.model.name}}
-      </h3>
+    <div class="w-70 flex flex-column ml4 items-start">
+      <div class="flex w-100 justify-between">
+        <h3 class="ma0" data-test-rr="musician-name">
+          {{this.model.name}}
+        </h3>
+        <LinkTo
+          @route="musicians.edit"
+          @model={{this.model}}
+          class="underline"
+          data-test-rr="musician-edit-link"
+        >
+          Edit
+        </LinkTo>
+      </div>
       <div class="mt3" data-test-rr="musician-age">
         <span class="b mr2">
           Born:
