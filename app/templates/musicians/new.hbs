@@ -2,5 +2,9 @@
   <h3 data-test-rr="form-header">
     New Musician
   </h3>
-  <MusicianForm @musician={{this.model}} @afterSave={{gotoMusicianDetails}} />
+  <MusicianForm
+    @musician={{this.model}}
+    @afterSave={{gotoMusicianDetails}}
+    @selectedBand={{this.selectedBand}}
+  />
 </div>
