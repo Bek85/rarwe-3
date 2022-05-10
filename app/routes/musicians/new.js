@@ -16,7 +16,7 @@ export default Route.extend({
     let { bandId } = controller;
     if (bandId) {
       let selectedBand = await this.store.findRecord("band", bandId);
-      controller.set("selectedBand", [selectedBand]);
+      controller.set("selectedBands", [selectedBand]);
     }
   },
 });
