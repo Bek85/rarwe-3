@@ -24,13 +24,18 @@
           Born:
         </span>
         {{#with this.model.yearOfBirth as |yob|}}
-          {{yob}}(age{{this.model.age}}years)
+          <span>
+            {{yob}}
+            (age
+            {{this.model.age}}
+            years)
+          </span>
         {{else}}
           Not known
         {{/with}}
       </div>
       <h4 class="ma0mt3 mb3">
-        Bands
+        Bands:
       </h4>
       {{#if this.model.bands.length}}
         <ul class="rr-list ma0 pl3">
