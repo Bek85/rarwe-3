@@ -59,6 +59,16 @@
   </div>
   <div class="rr-form-footer">
     <div class="rr-button-panel">
+      {{#if @afterCancel}}
+        <button
+          type="button"
+          class="rr-secondary-button mr3"
+          data-test-rr="cancel-button"
+          {{on "click" (perform this.discardChanges)}}
+        >
+          Cancel
+        </button>
+      {{/if}}
       <button
         type="submit"
         class="rr-action-button"

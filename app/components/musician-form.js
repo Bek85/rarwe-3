@@ -39,6 +39,11 @@ export default Component.extend({
     this.set("musician.yearOfBirth", year);
   }),
 
+  discardChanges: task(function* () {
+    this.musician.rollbackAttributes();
+    yield this.afterCancel.perform();
+  }),
+
   setShowErrors: action(function (property) {
     let showErrors = { ...this.showErrors };
     showErrors[property] = true;
