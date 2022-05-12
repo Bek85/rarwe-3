@@ -20,4 +20,5 @@ export default Model.extend(Validations, {
   }),
 
   bands: hasMany(),
+  yearOfBirth: attr(),
 });
