@@ -27,8 +27,10 @@ export default Route.extend({
     });
   },
 
-  model() {
-    return this.modelFor("bands.band");
+  async model() {
+    let band = this.modelFor("bands.band");
+    await band.hasMany("members").reload();
+    return band;
   },
 
   resetController(controller) {
