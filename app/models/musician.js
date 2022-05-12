@@ -21,4 +21,7 @@ export default Model.extend(Validations, {
 
   bands: hasMany(),
   yearOfBirth: attr(),
+  age: computed("yearOfBirth", function () {
+    return new Date().getFullYear() - this.yearOfBirth;
+  }),
 });
