@@ -368,6 +368,26 @@ a {
   color: var(--error-color);
 }
 
+.w-15 {
+  width: 15%;
+}
+.striped--near-white:nth-child(even) > td {
+  color: var(--near-white);
+}
+
+.striped--near-white:nth-child(odd) > td {
+  color: var(--mid-grey);
+}
+
+.rr-link-button {
+  background-color: transparent;
+  color: var(--near-white);
+  border: 0;
+  border-bottom: 1px solid var(--near-white);
+  padding: 0;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 60em) and (max-width: 100em) {
   .rr-form-container {
     width: 80%;
