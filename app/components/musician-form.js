@@ -3,6 +3,7 @@ import { inject as service } from "@ember/service";
 import { or } from "@ember/object/computed";
 import { task } from "ember-concurrency";
 import { action } from "@ember/object";
+import { computed } from "@ember/object";
 
 export default Component.extend({
   tagName: "",
@@ -22,6 +23,21 @@ export default Component.extend({
     this.set("showErrors", { name: false });
     this.set("bands", await this.store.findAll("band"));
   },
+
+  birthYears: computed(function () {
+    let currentYear = new Date().getFullYear();
+    let years = [];
+    let y = currentYear - 100;
+    while (y < currentYear - 7) {
+      years.push(y);
+      y++;
+    }
+    return years;
+  }),
+
+  updateYearOfBirth: action(function (year) {
+    this.set("musician.yearOfBirth", year);
+  }),
 
   setShowErrors: action(function (property) {
     let showErrors = { ...this.showErrors };

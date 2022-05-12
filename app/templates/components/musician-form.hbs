@@ -21,6 +21,24 @@
       {{/if}}
     </div>
   </div>
+  <div class="rr-form-row mb3">
+    <div class="mb2">
+      <label for="yob">
+        Year of birth
+      </label>
+    </div>
+    <div class="mb2" data-test-rr="yob-selector">
+      <PowerSelect
+        @options={{this.birthYears}}
+        @selected={{@musician.yearOfBirth}}
+        @searchEnabled={{false}}
+        @placeholder="Choose the year of birth"
+        @onChange={{this.updateYearOfBirth}} as |year|
+      >
+        {{year}}
+      </PowerSelect>
+    </div>
+  </div>
   <div class="rr-form-row">
     <div class="mb2">
       <label for="bands">
