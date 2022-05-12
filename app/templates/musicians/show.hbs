@@ -23,10 +23,19 @@
         <span class="b mr2">
           Born:
         </span>
-        1969 (age 49 years old)
+        {{#with this.model.yearOfBirth as |yob|}}
+          <span>
+            {{yob}}
+            (age
+            {{this.model.age}}
+            years)
+          </span>
+        {{else}}
+          Not known
+        {{/with}}
       </div>
       <h4 class="ma0mt3 mb3">
-        Bands
+        Bands:
       </h4>
       {{#if this.model.bands.length}}
         <ul class="rr-list ma0 pl3">

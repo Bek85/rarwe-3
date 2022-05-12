@@ -19,5 +19,9 @@ export default Model.extend(Validations, {
       .join("");
   }),
 
-  bands: hasMany(),
+  bands: hasMany({ async: false }),
+  yearOfBirth: attr(),
+  age: computed("yearOfBirth", function () {
+    return new Date().getFullYear() - this.yearOfBirth;
+  }),
 });

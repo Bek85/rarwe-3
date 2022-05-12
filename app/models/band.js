@@ -23,7 +23,7 @@ export default Model.extend(Validations, {
   name: attr(),
   description: attr(),
   songs: hasMany(),
-  members: hasMany("musicians"),
+  members: hasMany("musicians", { async: false }),
 
   isGreatBand: computed("songs.@each.rating", function () {
     let goodSongs = this.get("songs").filter((song) => song.rating >= 4);
