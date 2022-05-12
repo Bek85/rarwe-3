@@ -4,7 +4,7 @@ export default JSONAPISerializer.extend({
   extractAttributes(modelClass, resourceHash) {
     let { modelName } = modelClass;
     let extracted = this._super(...arguments);
-    // console.log(extracted);
+
     if (modelName === "musician") {
       let birthDate = resourceHash.attributes["birth-date"];
       if (birthDate) {
@@ -16,6 +16,7 @@ export default JSONAPISerializer.extend({
 
   serialize(snapshot) {
     let json = this._super(...arguments);
+    console.log(json);
     if (snapshot.modelName !== "musician") {
       return json;
     }
