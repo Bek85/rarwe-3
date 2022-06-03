@@ -1,0 +1,64 @@
+<form {{on "submit" (perform this.saveBand)}}>
+  <div class="rr-form-row mb3">
+    <div class="mb2">
+      <label for="name">
+        Name
+      </label>
+    </div>
+    <div class="mb2">
+      <Input
+        @type="text"
+        @value={{@band.name}}
+        class="rr-input ml-auto w-100"
+        data-test-rr="band-name-field"
+        id="name"
+        {{on "blur" (fn this.setShowErrors "name")}}
+      />
+      {{#if this.showErrors.name}}
+        <div class="rr-form-field-error" data-test-rr="name-error">
+          {{v-get @band "name" "message"}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="rr-form-row mb3">
+    <div class="mb2">
+      <label for="name">
+        Description
+      </label>
+    </div>
+    <div class="mb2">
+      <Textarea
+        @value={{@band.description}}
+        class="rr-textarea"
+        data-test-rr="band-description-field"
+        {{on "blur" (fn this.setShowErrors "description")}}
+      />
+      {{#if this.showErrors.description}}
+        <div class="rr-form-field-error" data-test-rr="description-error">
+          {{v-get @band "description" "message"}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="rr-form-footer">
+    <div class="rr-button-panel">
+      <button
+        type="button"
+        class="rr-secondary-button mr3"
+        data-test-rr="cancel-button"
+        {{on "click" (perform this.discardChanges)}}
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="rr-action-button"
+        data-test-rr="update-button"
+        disabled={{this.isButtonDisabled}}
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</form>
