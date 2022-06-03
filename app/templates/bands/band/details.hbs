@@ -1,33 +1,19 @@
 <section class="rr-panel b--solid br1 bw1">
-  <div class="rr-inline-form fr">
-    <div class="rr-inline-form-group">
-      <button
-        type="button"
-        class="rr-cancel-icon-left"
-        {{on "click" this.stopEditing}}
-      >
-        {{fa-icon "times"}}
-      </button>
-      <button {{on "click" (if this.isEditing (perform this.save) this.edit)}}>
-        {{if this.isEditing "Save" "Edit"}}
-      </button>
-    </div>
+  <div class="flex w-100 justify-between">
+    <h3>
+      Description
+    </h3>
+    <LinkTo
+      @route="bands.band.edit"
+      class="underline"
+      data-test-rr="edit-band-link"
+    >
+      Edit
+    </LinkTo>
   </div>
-  <h3>
-    Description
-  </h3>
-  {{#if this.isEditing}}
-    <Textarea class="rr-textarea" @value={{this.model.description}} />
-  {{else}}
-    <p class="lh-copy">
-      {{this.model.description}}
-    </p>
-  {{/if}}
-  {{#if this.showErrors.description}}
-    <div class="rr-form-field-error" data-test-rr="description-error">
-      {{v-get this.model "description" "message"}}
-    </div>
-  {{/if}}
+  <p class="lh-copy" data-test-rr="band-description">
+    {{this.model.description}}
+  </p>
   <h3>
     Members
   </h3>

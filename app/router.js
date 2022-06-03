@@ -51,6 +51,7 @@ Router.map(function () {
     this.route("band", { path: ":id" }, function () {
       this.route("songs");
       this.route("details");
+      this.route('edit');
     });
   });
   this.route("sign-up");

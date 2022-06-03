@@ -16,7 +16,7 @@ export default JSONAPISerializer.extend({
 
   serialize(snapshot) {
     let json = this._super(...arguments);
-    console.log(json);
+    // console.log(json);
     if (snapshot.modelName !== "musician") {
       return json;
     }
