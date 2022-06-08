@@ -29,4 +29,9 @@ export default Component.extend({
     yield this.band.save();
     yield this.router.transitionTo("bands.band.details", this.band.id);
   }),
+
+  discardChanges: task(function* () {
+    this.band.rollbackAttributes();
+    yield this.router.transitionTo("bands.band.details", this.band.id);
+  }),
 });
