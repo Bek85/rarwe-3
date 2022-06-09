@@ -10,6 +10,11 @@
         Songs
       </LinkTo>
     </li>
+    <li class="rr-navbar-item" data-test-rr="concerts-nav-item">
+      <LinkTo @route="bands.band.concerts">
+        Concerts
+      </LinkTo>
+    </li>
     <button class="delete-band" {{on "click" (fn this.deleteBand this.model)}}>
       {{fa-icon "trash"}}
       Delete

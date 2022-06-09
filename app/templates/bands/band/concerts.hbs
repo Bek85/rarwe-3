@@ -1,0 +1,54 @@
+<h3>
+  Concerts
+</h3>
+{{#if this.model.length}}
+  <table class="collapse ba br2 pv2 ph3 w-100">
+    <thead>
+      <th class="pv2 ph3 tl f6 fw6 ttu">
+        Date
+      </th>
+      <th class="pv2 ph3 tl f6 fw6 ttu">
+        City
+      </th>
+      <th class="pv2 ph3 tl f6 fw6 ttu">
+        Location
+      </th>
+      <th class="pv2 ph3 tl f6 fw6 ttu">
+        Event page
+      </th>
+    </thead>
+    <tbody>
+      {{#each this.model as |concert|}}
+        <tr class="striped--near-white" data-test-rr="convert-row">
+          <td class="pv2 ph3">
+            {{concert.start.date}}
+          </td>
+          <td class="pv2 ph3">
+            {{concert.location.city}}
+          </td>
+          <td class="pv2 ph3">
+            {{concert.venue.displayName}}
+          </td>
+          <td class="pv2 ph3">
+            <a href={{concert.uri}}>
+              Visit
+              {{fa-icon "external-link"}}
+            </a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="mt2 flex items-end">
+    <a class="ml-auto w-15" href="https://songkick.com">
+      <img
+        src="/images/powered-bysongkick-white.svg"
+        alt="Powered by Songkick"
+      />
+    </a>
+  </div>
+{{else}}
+  <p class="tc">
+    There are no upcoming concerts
+  </p>
+{{/if}}

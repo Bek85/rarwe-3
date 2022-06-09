@@ -52,6 +52,7 @@ Router.map(function () {
       this.route("songs");
       this.route("details");
       this.route('edit');
+      this.route('concerts');
     });
   });
   this.route("sign-up");

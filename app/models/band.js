@@ -22,6 +22,7 @@ const Validations = buildValidations({
 export default Model.extend(Validations, {
   name: attr(),
   description: attr(),
+  songkickArtistId: attr(),
   songs: hasMany(),
   members: hasMany("musicians", { async: false }),
 
