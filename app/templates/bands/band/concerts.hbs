@@ -1,7 +1,31 @@
-<h3>
-  Concerts
-</h3>
-{{#if this.model.length}}
+<div class="flex w-100 justify-between mb3">
+  <h3 class="ma0">
+    {{#if this.showingAll}}
+      Concerts
+    {{else}}
+      Nearby concerts
+    {{/if}}
+    Concerts
+  </h3>
+  {{#if this.filterConcerts.isRunning}}
+    <div>
+      Getting location...
+    </div>
+  {{else}}
+    <button
+      type="button"
+      class="rr-link-button"
+      {{on "click" (perform this.filterConcerts)}}
+    >
+      {{#if this.showingAll}}
+        Only show nearby
+      {{else}}
+        Show All
+      {{/if}}
+    </button>
+  {{/if}}
+</div>
+{{#if this.concerts.length}}
   <table class="collapse ba br2 pv2 ph3 w-100">
     <thead>
       <th class="pv2 ph3 tl f6 fw6 ttu">
@@ -18,7 +42,7 @@
       </th>
     </thead>
     <tbody>
-      {{#each this.model as |concert|}}
+      {{#each this.concerts as |concert|}}
         <tr class="striped--near-white" data-test-rr="convert-row">
           <td class="pv2 ph3">
             {{concert.start.date}}

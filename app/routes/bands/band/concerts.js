@@ -3,8 +3,6 @@ import fetch from "fetch";
 import { inject as service } from "@ember/service";
 import ENV from "rarwe/config/environment";
 
-console.log(ENV.apiHost);
-
 export default Route.extend({
   session: service(),
 
@@ -19,7 +17,7 @@ export default Route.extend({
     }
     let response = await fetch(concertsURL, {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return await response.json();

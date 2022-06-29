@@ -56,7 +56,8 @@
     "eslint-plugin-node": "^10.0.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.9.0",
-    "tachyons": "^4.9.1"
+    "tachyons": "^4.9.1",
+    "ember-cli-geo": "https://github.com/balinterdi/ember-cli-geo.git#upgrade-babel"
   },
   "resolutions": {
     "whatwg-fetch": "3.4.0"
